@@ -53,7 +53,13 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "movie-notify:build:production"
+          "buildTarget": "movie-notify:build:production",
+          "fileReplacements": [
+            {
+              "replace": "./apps/movie-notify/src/environments/environment.ts",
+              "with": "./apps/movie-notify/src/environments/environment.prod.ts"
+            }
+          ]
         },
         "development": {
           "buildTarget": "movie-notify:build:development"

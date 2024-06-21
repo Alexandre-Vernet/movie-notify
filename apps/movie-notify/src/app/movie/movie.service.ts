@@ -1,51 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from "rxjs";
-import { Movie, Status } from "./movie";
-import { HttpClient } from "@angular/common/http";
+import { Observable } from 'rxjs';
+import { MovieDto } from '@movie-notify';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MovieService {
 
-  constructor(
-    private readonly http: HttpClient,
-  ) { }
+  movieUri = environment.movieUri();
 
-  getMovies(): Observable<Movie[]> {
-    return of([
-      {
-        id: 1,
-        name: 'Movie 1',
-        status: Status.IN_PROGRESS,
-        image: 'https://fr.web.img4.acsta.net/pictures/15/01/20/11/47/440039.jpg',
-        creationDate: new Date()
-      },
-      {
-        id: 1,
-        name: 'Movie 1',
-        status: Status.IN_PROGRESS,
-        image: 'https://fr.web.img4.acsta.net/pictures/15/01/20/11/47/440039.jpg',
-        creationDate: new Date()
-      },
-      {
-        id: 1,
-        name: 'Movie 1',
-        status: Status.IN_PROGRESS,
-        image: 'https://fr.web.img4.acsta.net/pictures/15/01/20/11/47/440039.jpg',
-        creationDate: new Date()
-      },
-      {
-        id: 1,
-        name: 'Movie 1',
-        status: Status.IN_PROGRESS,
-        image: 'https://fr.web.img4.acsta.net/pictures/15/01/20/11/47/440039.jpg',
-        creationDate: new Date()
-      },
-    ]);
+  constructor(
+    private readonly http: HttpClient
+  ) {
   }
 
-  addMovie(movie: Omit<Movie, 'id'|'image'>): Observable<Movie> {
-    return this.http.post<Movie>('http://localhost:3000/movies', movie);
+  getMovies(): Observable<MovieDto[]> {
+    return this.http.get<MovieDto[]>(`${this.movieUri}`);
+  }
+
+  addMovie(movie: Omit<MovieDto, 'id' | 'image'>): Observable<MovieDto> {
+    return this.http.post<MovieDto>(`${this.movieUri}/movies`, movie);
   }
 }

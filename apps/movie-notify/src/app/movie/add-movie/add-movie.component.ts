@@ -8,7 +8,7 @@ import { MovieService } from "../movie.service";
 import { Button } from "primeng/button";
 import { Router } from "@angular/router";
 import { ToastService } from "../../toast/toast.service";
-import { Movie, Status } from "../movie";
+import { MovieDto, Status } from '@movie-notify';
 
 @Component({
   selector: 'app-add-movie',
@@ -45,7 +45,7 @@ export class AddMovieComponent implements OnInit {
       distinctUntilChanged(),
       takeUntil(this.unsubscribe$),
       switchMap(() => {
-        const movie: Omit<Movie, 'id'|'image'> = {
+        const movie: Omit<MovieDto, 'id'|'image'> = {
           name: this.addMovieForm.get('name').value,
           status: Status.IN_PROGRESS,
           creationDate: new Date(),

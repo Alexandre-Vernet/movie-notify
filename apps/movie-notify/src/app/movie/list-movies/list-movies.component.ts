@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataViewModule } from "primeng/dataview";
 import { TagModule } from "primeng/tag";
 import { AsyncPipe, NgClass, NgForOf, NgIf } from "@angular/common";
-import { Movie } from "../movie";
+import { MovieDto } from '@movie-notify';
 import { Button } from "primeng/button";
 import { MovieService } from "../movie.service";
 import { Subject, takeUntil } from "rxjs";
@@ -24,7 +24,7 @@ import { Subject, takeUntil } from "rxjs";
 })
 export class ListMoviesComponent implements OnInit, OnDestroy {
 
-  movies: Movie[];
+  movies: MovieDto[];
   unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(

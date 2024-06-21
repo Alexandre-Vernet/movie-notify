@@ -1,4 +1,4 @@
-export interface Movie {
+export interface MovieDto {
   id: number;
   name: string;
   status: Status;
