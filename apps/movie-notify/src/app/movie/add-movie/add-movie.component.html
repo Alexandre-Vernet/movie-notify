@@ -1,0 +1,9 @@
+<form [formGroup]="addMovieForm">
+  <p-inputGroup>
+    <p-inputGroupAddon>
+      <i class="pi pi-user"></i>
+    </p-inputGroupAddon>
+    <input pInputText formControlName="name" placeholder="Movie name"/>
+  </p-inputGroup>
+  <p-button label="Add" (click)="buttonAddMovie$.next()"></p-button>
+</form>

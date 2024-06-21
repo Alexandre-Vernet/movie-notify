@@ -1,0 +1,31 @@
+{
+  "name": "movie-notify-api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/movie-notify-api/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "movie-notify-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "movie-notify-api:build:development"
+        },
+        "production": {
+          "buildTarget": "movie-notify-api:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/movie-notify-api/jest.config.ts"
+      }
+    }
+  }
+}
